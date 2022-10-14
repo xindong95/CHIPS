@@ -137,8 +137,8 @@ if ("macs2_broadpeaks" in config) and config["macs2_broadpeaks"]:
         params:
             pval="1E-9"
         message: "FRiPs: calculate frips"
-        log:output_path + "/logs/frips/{sample}.log"
-        benchmark: output_path + "/Benchmark/{sample}_frips_broadCalculate.benchmark"
+        # log:output_path + "/logs/frips/{sample}.log"
+        # benchmark: output_path + "/Benchmark/{sample}_frips_broadCalculate.benchmark"
         conda: "../envs/frips/frips.yaml"
         shell:
             "CHIPS/modules/scripts/frips_calculate.sh -a {input.treat} -b {input.bed} -p {params.pval} > {output} " # 2>>{log}"

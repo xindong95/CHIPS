@@ -307,8 +307,8 @@ if config.get("macs2_broadpeaks"):
         output:
             output_path + "/peaks/peakStats.csv"
         message: "PEAKS: collecting peaks stats for each run for {input}"
-        log:output_path + "/logs/peaks/{run}.{rep}.log"
-        benchmark: output_path + "/Benchmark/{run}.{rep}_peaks_getBroadStats.benchmark"
+        # log:output_path + "/logs/peaks/{run}.{rep}.log"
+        # benchmark: output_path + "/Benchmark/{run}.{rep}_peaks_getBroadStats.benchmark"
         conda: "../envs/peaks/peaks.yaml"
         shell:
             "CHIPS/modules/scripts/peaks_getPeakStats.py {params.files} -o {output}"# 2>>{log}"

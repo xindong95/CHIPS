@@ -531,7 +531,7 @@ def main():
     wes_report['sections'] = wes_sections
     wes_report['panels'] = wes_panels
     wes_report['first_section'] = first_section
-    wes_report['plot_compressed_json'] = mqc_report.compress_json(mqc_report.plot_data)
+    # wes_report['plot_compressed_json'] = mqc_report.compress_json(mqc_report.plot_data)
     wes_report['wes_resources'] = json.dumps(_resources)
     wes_report['config'] = mqc_config
     template.stream(wes_report).dump(options.output)

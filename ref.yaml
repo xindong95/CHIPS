@@ -106,40 +106,41 @@ mm9:
   #LEN: SHOULD MAYBE change to motif_genome
   motif_path: mm9
 
-rn5:
-  bwa_index: ./ref_files/rn5/bwa_indices/rn5/rn5.fa
+# rn5:
+#   bwa_index: ./ref_files/rn5/bwa_indices/rn5/rn5.fa
 
-  geneTable: ./ref_files/rn5/rn5.refGene
-  conservation: ./ref_files/rn5/conservation/rn5/vertebrate
+#   geneTable: ./ref_files/rn5/rn5.refGene
+#   conservation: ./ref_files/rn5/conservation/rn5/vertebrate
 
-  DHS: 
-  exons: ./ref_files/rn5/regions/exon.bed
-  promoters: ./ref_files/rn5/regions/promoter.bed
-  velcro_regions: 
+#   DHS: 
+#   exons: ./ref_files/rn5/regions/exon.bed
+#   promoters: ./ref_files/rn5/regions/promoter.bed
+#   velcro_regions: 
 
-  chrom_lens: ./ref_files/rn5/regions/rn5.len
+#   chrom_lens: ./ref_files/rn5/regions/rn5.len
 
-  #MACS2 genome_size param: hs = 2.7e9, mm = 1.87e9, ce = 9e7, dm = 1.2e8
-  #NOTE: as this value is not provided by MACS2, we are using the Ungapped 
-  #Length found here:
-  #https://www.ncbi.nlm.nih.gov/assembly/GCF_000001895.4/#/st
-  genome_size: "2.57e9"
+#   #MACS2 genome_size param: hs = 2.7e9, mm = 1.87e9, ce = 9e7, dm = 1.2e8
+#   #NOTE: as this value is not provided by MACS2, we are using the Ungapped 
+#   #Length found here:
+#   #https://www.ncbi.nlm.nih.gov/assembly/GCF_000001895.4/#/st
+#   genome_size: "2.57e9"
 
-  #LEN: SHOULD MAYBE change to motif_genome
-  motif_path: rn5
+#   #LEN: SHOULD MAYBE change to motif_genome
+#   motif_path: rn5
 
 rn6:
   bwa_index: ./ref_files/rn6/bwa_indices/rn6/rn6.fa
 
   geneTable: ./ref_files/rn6/rn6.refGene
-  conservation: ./ref_files/rn6/conservation/rn6/vertebrate
+  geneBed: ./ref_files/rn6/rn6.refGene.bed
+  conservation: ./ref_files/rn6/conservation/rn6.phastCons20way.bw
 
-  DHS: 
-  exons: ./ref_files/rn6/regions/exon.bed
-  promoters: ./ref_files/rn6/regions/promoter.bed
+  DHS: ./ref_files/rn6/regions/rn6.open.bed # GSE171923
+  exons: ./ref_files/rn6/regions/rn6.exon.bed
+  promoters: ./ref_files/rn6/regions/rn6.promoter.bed
   velcro_regions: 
 
-  chrom_lens: ./ref_files/rn6/regions/rn6.len
+  chrom_lens: ./ref_files/rn6/regions/rn6.chrom.sizes
 
   #MACS2 genome_size param: hs = 2.7e9, mm = 1.87e9, ce = 9e7, dm = 1.2e8
   #NOTE: as this value is not provided by MACS2, we are using the Ungapped 

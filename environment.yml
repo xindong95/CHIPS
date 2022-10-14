@@ -85,5 +85,4 @@ dependencies:
 - plotly_express
 - markdown
 - pyyaml>=4
-- pip:
-    - "git+https://github.com/deeptools/pyGenomeTracks.git"
+- pygenometracks
