@@ -66,7 +66,8 @@ rule motif_homer:
         if wc >= _minPeaks:
             try:
             #PASS- run motif scan
-                shell("findMotifsGenome.pl {input} {params.genome} {params.results} -size {params.size} -p {threads} -mask -seqlogo -preparsedDir {params.results} >>{log} 2>&1")
+                print(f"findMotifsGenome.pl {input} {params.genome} {params.results} -size {params.size} -p {threads} -mask -seqlogo -preparsedDir {params.results} >>{log} 2>&1")
+                shell(f"findMotifsGenome.pl {input} {params.genome} {params.results} -size {params.size} -p {threads} -mask -seqlogo -preparsedDir {params.results} >>{log} 2>&1")
             except:
                 print("homer package not installed")
         else:
