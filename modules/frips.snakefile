@@ -50,6 +50,8 @@ rule frips_createNonChrM:
     4M_nonChrM.bam AND 4M_unique_nonChrM.bam so we save some redundancy here"""
     input:
         output_path + "/align/{sample}/{sample}.sorted.bam"
+    output:
+        temp(output_path + '/align/{sample}/{sample}_nonChrM.sam')
     params:
         #hack to get the regex in to filter out chrM, random, chrUn
         regex="\'/chrM/d;/random/d;/chrUn/d\'",
@@ -59,8 +61,6 @@ rule frips_createNonChrM:
     log:output_path + "/logs/frips/{sample}.log"
     threads: _samtools_threads
     conda: "../envs/frips/frips.yaml"
-    output:
-        temp(output_path + '/align/{sample}/{sample}_nonChrM.sam')
     shell:
         "samtools view -@ {threads} -h {input} | sed -e {params.regex} > {output} 2>>{log}"
 
@@ -209,7 +209,7 @@ rule frips_nonChrMStats:
     input:
         #NOTE: uniq_bam is generated in align_common module-
         #HACK- taking advantage that this module is loaded AFTER align_common
-        uniq_bam=output_path + "/align/{sample}/{sample}_unique.bam",
+        uniq_bam=output_path + "/align/{sample}/{sample}_unique.sorted.bam",
         nonChrM_bam=output_path + "/align/{sample}/{sample}_unique_nonChrM.bam"
     output:
         #NOTE: CHIPS-RESUME- IT's better to keep this file around, b/c

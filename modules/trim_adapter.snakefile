@@ -26,8 +26,8 @@ def trim_targets(wildcards):
         # fastp output json and html summarization
         ls.append(output_path + "/trim_adaptor/%s/%s_fastp.json" % (sample,sample))
         ls.append(output_path + "/trim_adaptor/%s/%s_fastp.html" % (sample,sample))
-        ls.append(output_path + "/trim_adaptor/%s/%s_0.trimmed.fq" % (sample,sample))
-        ls.append(output_path + "/trim_adaptor/%s/%s_1.trimmed.fq" % (sample,sample))
+        # ls.append(output_path + "/trim_adaptor/%s/%s_0.trimmed.fq" % (sample,sample))
+        # ls.append(output_path + "/trim_adaptor/%s/%s_1.trimmed.fq" % (sample,sample))
     return ls
 
 def getFastq(wildcards):
