@@ -256,6 +256,7 @@ else:
     include: "./modules/align_common.snakefile"  # common align rules
 
 include: "./modules/peaks.snakefile"         # peak calling rules
+# include: "./modules/bin.snakefile"         # bin based rules
 include: "./modules/fastqc.snakefile"        # fastqc (sequence qual) rules
 include: "./modules/conservation.snakefile"  # generate conservation plot
 include: "./modules/ceas.snakefile"          # annotate peak regions
