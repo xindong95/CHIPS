@@ -4,7 +4,7 @@
 
 import subprocess
 
-_bwa_threads=4
+_bwa_threads=8
 _bwa_q="5"
 _bwa_l="32"
 _bwa_k="2"
@@ -100,7 +100,7 @@ rule align_bwaConvert:
     log: output_path + "/logs/align/{sample}.log"
     benchmark: output_path + "/Benchmark/{sample}_align_bwaConvert.benchmark"
     shell:
-        """{params.sentieon} bwa {params.run_type} -r \"{params.read_group}\" {params.index} {input.sai} {input.fastq} | samtools {params.hack} > {output}"""
+        """{params.sentieon} bwa {params.run_type} -r \"{params.read_group}\" {params.index} {input.sai} {input.fastq} | samtools {params.hack} > {output} 2>>{log}"""
 
 
 def aggregate_align_input(wildcards):

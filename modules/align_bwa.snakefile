@@ -70,10 +70,10 @@ rule align_bwaAln:
         sentieon=config["sentieon"] if ("sentieon" in config) and config["sentieon"] else ""
     threads: _bwa_threads
     message: "ALIGN: Running BWA aln for alignment for {input}"
-    # log: output_path + "/logs/align/{sample}.log"
+    log: output_path + "/logs/align/{sample}.log"
     benchmark: output_path + "/Benchmark/{sample}_{mate}_align_bwaAln.benchmark"
     shell:
-        "{params.sentieon} bwa aln -q {params.bwa_q} -l {params.bwa_l} -k {params.bwa_k} -t {threads} {params.index} {input} > {output.sai}"
+        "{params.sentieon} bwa aln -q {params.bwa_q} -l {params.bwa_l} -k {params.bwa_k} -t {threads} {params.index} {input} > {output.sai} 2>>{log}"
 
 rule align_bwaConvert:
     input:
@@ -90,10 +90,10 @@ rule align_bwaConvert:
         read_group=lambda wildcards: "@RG\\tID:%s\\tSM:%s\\tPL:ILLUMINA" % (wildcards.sample, wildcards.sample)
     threads: _bwa_threads
     message: "ALIGN: Converting BWA alignment to BAM"
-    # log: output_path + "/logs/align/{sample}.log"
+    log: output_path + "/logs/align/{sample}.log"
     benchmark: output_path + "/Benchmark/{sample}_align_bwaConvert.benchmark"
     shell:
-        """{params.sentieon} bwa {params.run_type} -r \"{params.read_group}\" {params.index} {input.sai} {input.fastq} | samtools {params.hack} > {output}"""
+        """{params.sentieon} bwa {params.run_type} -r \"{params.read_group}\" {params.index} {input.sai} {input.fastq} | samtools {params.hack} > {output} 2>>{log}"""
 
 
 def aggregate_align_input(wildcards):
