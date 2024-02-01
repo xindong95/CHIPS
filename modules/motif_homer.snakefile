@@ -25,6 +25,16 @@ rule motif_all:
     input:
         motif_targets
 
+def motif_homer_input(wildcards):
+    run = wildcards.run
+    rep = wildcards.rep
+    runRep = "%s.%s" % (run,rep)
+    if ("macs2_broadpeaks" in config) and config["macs2_broadpeaks"]:
+        temp = output_path + "/peaks/%s/%s_sorted_5k_peaks.bed" % (runRep,runRep)
+    else:
+        temp = output_path + "/peaks/%s/%s_sorted_5k_summits.bed" % (runRep,runRep)
+    return temp
+
 def _createEmptyMotif(motif_html):
     """When the _sorted_5k_summits.bed has too few peaks, or is empty,
     we still want to create an emtpy homerResult.html
@@ -40,7 +50,7 @@ def _createEmptyMotif(motif_html):
 rule motif_homer:
     """call HOMER on top 5k summits"""
     input:
-        bed = output_path + "/peaks/{run}.{rep}/{run}.{rep}_sorted_5k_summits.bed"
+        bed = motif_homer_input
     output:
         # path=directory(output_path + "/motif/{run}.{rep}/"),
         # results=directory(output_path + "/motif/{run}.{rep}/results"),

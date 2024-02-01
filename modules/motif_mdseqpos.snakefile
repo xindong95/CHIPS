@@ -23,6 +23,16 @@ rule motif_all:
     input:
         motif_targets
 
+def motif_seqpos_input(wildcards):
+    run = wildcards.run
+    rep = wildcards.rep
+    runRep = "%s.%s" % (run,rep)
+    if ("macs2_broadpeaks" in config) and config["macs2_broadpeaks"]:
+        temp = output_path + "/peaks/%s/%s_sorted_5k_peaks.bed" % (runRep,runRep)
+    else:
+        temp = output_path + "/peaks/%s/%s_sorted_5k_summits.bed" % (runRep,runRep)
+    return temp
+
 def _createEmptyMotif(motif_html, motif_json):
     """When the _sorted_5k_summits.bed has too few peaks, or is empty,
     we still want to create an emtpy mdseqpos_index.html and an 
@@ -49,8 +59,7 @@ def _createEmptyMotif(motif_html, motif_json):
 rule motif_seqpos:
     """call MDSeqpos on top 5k summits"""
     input:
-        #KEY: Since motif analysis is costly, we're only running it on rep1
-        bed = output_path + "/peaks/{run}.{rep}/{run}.{rep}_sorted_5k_summits.bed"
+        bed = motif_seqpos_input
     output:
         # path=directory(output_path + "/motif"),
         # results=output_path + "/motif/{run}.{rep}/results",

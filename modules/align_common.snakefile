@@ -235,7 +235,7 @@ else:
             memory = _sambamba_sort_mem
         threads: _align_threads
         shell:
-            "sambamba sort {input} -o {output} -t {threads} -m {params.memory}G --tmpdir ./sambamba_tmp 2>>{log}"
+            "sambamba sort {input} -o {output} -t {threads} -m {params.memory}G --tmpdir ./.sambamba_tmp 2>>{log}"
 
     rule align_sortUniqueBams:
         """General sort rule--take a bam {filename}.bam and
@@ -254,7 +254,7 @@ else:
             memory = _sambamba_sort_mem
         threads: _align_threads
         shell:
-            "sambamba sort {input} -o {output} -t {threads} -m {params.memory}G --tmpdir ./sambamba_tmp 2>>{log}"
+            "sambamba sort {input} -o {output} -t {threads} -m {params.memory}G --tmpdir ./.sambamba_tmp 2>>{log}"
 
 rule align_filterBams:
     """Filter out the long reads to get more accurate results in peaks calling"""

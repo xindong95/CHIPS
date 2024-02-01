@@ -58,7 +58,7 @@ rule epicypher_sortEpicypher:
     threads: _threads
     conda: "../envs/epicypher/epicypherl.yaml"
     shell:
-        "sambamba sort {input} -o {output} -t {threads} --tmpdir ./sambamba_tmp"# 2>>{log}"
+        "sambamba sort {input} -o {output} -t {threads} --tmpdir ./.sambamba_tmp"# 2>>{log}"
 
 rule epicypher_uniquelyMapped:
     """Get uniquely mapped reads from epicypher.bam"""

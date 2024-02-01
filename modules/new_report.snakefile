@@ -337,7 +337,7 @@ def report_downstream_conser_motif_inputFn(wildcards):
     #get homer ls files
     homer_ls = []
     motif_ls = []
-    if 'motif' in config and config['motif'] == 'homer' and config["macs2_broadpeaks"] != True:
+    if 'motif' in config and config['motif'] == 'homer':
         for run in config["runs"].keys():
             for rep in _reps[run]:
                 runRep = "%s.%s" % (run, rep)
