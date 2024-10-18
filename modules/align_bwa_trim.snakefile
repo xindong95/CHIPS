@@ -50,7 +50,7 @@ rule align_bwaMem:
     input:
         getTrimmedFastq
     output:
-        temp(output_path + "/align/{sample}/{sample}_mem.bam")
+        output_path + "/align/{sample}/{sample}_mem.bam"
     params:
         index=config['bwa_index'],
         sentieon=config.get("sentieon", ""),
@@ -87,7 +87,7 @@ rule align_bwaConvert:
         sai=getMates,
         fastq=getTrimmedFastq
     output:
-        temp(output_path + "/align/{sample}/{sample}_aln.bam")
+        output_path + "/align/{sample}/{sample}_aln.bam"
     params:
         run_type= getRunType,
         index=config['bwa_index'],

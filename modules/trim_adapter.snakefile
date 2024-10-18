@@ -1,4 +1,4 @@
-_fastp_threads=2
+_fastp_threads=4
 
 # def trim_targets(wildcards):
 #     """Generates the targets for this module"""

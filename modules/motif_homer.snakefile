@@ -78,6 +78,9 @@ rule motif_homer:
             #PASS- run motif scan
                 print(f"findMotifsGenome.pl {input} {params.genome} {params.results} -size {params.size} -p {threads} -mask -seqlogo -preparsedDir {params.results} >>{log} 2>&1")
                 shell(f"findMotifsGenome.pl {input} {params.genome} {params.results} -size {params.size} -p {threads} -mask -seqlogo -preparsedDir {params.results} >>{log} 2>&1")
+                # in case no logo 
+                if not os.path.exists(output.logo):
+                    _createEmptyMotif(output.logo)
             except:
                 print("homer package not installed")
         else:
